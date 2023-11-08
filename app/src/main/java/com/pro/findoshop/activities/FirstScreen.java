@@ -1,51 +1,54 @@
 package com.pro.findoshop.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.app.lets_go_splash.CreateAnim;
 import com.app.lets_go_splash.OnAnimationListener;
 import com.app.lets_go_splash.StarterAnimation;
 import com.pro.findoshop.MainActivity;
 import com.pro.findoshop.R;
-import com.pro.findoshop.databinding.ActivityFirstScreenBinding;
 import java.util.ArrayList;
 
 public class FirstScreen extends AppCompatActivity {
-    ActivityFirstScreenBinding binding;
+    ImageView logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_first_screen);
-        startAnim();
+        setContentView(R.layout.activity_first_screen);
+        logo = findViewById(R.id.logo);
+        new Handler().postDelayed(this::startAnim,2000);
+        new Handler().postDelayed(() -> {
+            Intent i = new Intent(FirstScreen.this, MainActivity.class);
+            startActivity(i);
+            overridePendingTransition(R.anim.no_animation, R.anim.fade_out);
+            finish();
+        }, 3400);
+
 
     }
     void startAnim(){
-        new Handler().postDelayed(() -> {
             new StarterAnimation(getAnimList(), new OnAnimationListener() {
                 @Override
-                public void onStartAnim() { // TODO::
+                public void onStartAnim() {
                 }
 
                 @Override
-                public void onRepeat() { // TODO::
+                public void onRepeat() {
                 }
 
                 @Override
                 public void onEnd() {
-                    binding.logo.setVisibility(View.GONE);
-                    Intent i = new Intent(FirstScreen.this, MainActivity.class);
-
-                    startActivity(i);
-//                overridePendingTransition(R.anim.whole_animation, R.anim.no_animation);
-                    finish();
+                    logo.setVisibility(View.GONE);
                 }
-            }).startSequentialAnimation(binding.logo);
-        },500);
+            }).startSequentialAnimation(logo);
     }
     private ArrayList<Animation> getAnimList() {
         ArrayList<Animation> animList = new ArrayList<>();
