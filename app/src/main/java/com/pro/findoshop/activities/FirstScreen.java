@@ -26,7 +26,7 @@ public class FirstScreen extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         new Handler().postDelayed(this::startAnim,2000);
         new Handler().postDelayed(() -> {
-            Intent i = new Intent(FirstScreen.this, MainActivity.class);
+            Intent i = new Intent(FirstScreen.this, Onboarding.class);
             startActivity(i);
             overridePendingTransition(R.anim.no_animation, R.anim.fade_out);
             finish();

@@ -13,6 +13,9 @@
         android:theme="@style/Base.Theme.FindoShop"
         tools:targetApi="31">
         <activity
+            android:name=".activities.Onboarding"
+            android:exported="false" />
+        <activity
             android:name=".activities.Registration"
             android:exported="false" />
         <activity
