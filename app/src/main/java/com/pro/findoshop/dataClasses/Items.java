@@ -4,47 +4,75 @@ import java.util.List;
 
 public class Items {
 
-    private List<String> imageUrls;
-    private String itemName, itemDesc;
-    private double itemRating;
+    private String ItemUrl;
+    private String ItemName, ItemDescription,price,ItemId,Category;
+    private double ItemRating;
 
     public Items(){}
-    public Items(List<String> imageUrls, String itemName, String itemDesc, double itemRating) {
-        this.imageUrls = imageUrls;
-        this.itemName = itemName;
-        this.itemDesc = itemDesc;
-        this.itemRating = itemRating;
+
+    public Items(String itemUrl, String itemName, String itemDescription, String price, String itemId, String category, double itemRating) {
+        ItemUrl = itemUrl;
+        ItemName = itemName;
+        ItemDescription = itemDescription;
+        this.price = price;
+        ItemId = itemId;
+        Category = category;
+        ItemRating = itemRating;
     }
 
-    public List<String> getImageUrls() {
-        return imageUrls;
+    public String getItemUrl() {
+        return ItemUrl;
     }
 
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
+    public void setItemUrl(String itemUrl) {
+        ItemUrl = itemUrl;
     }
 
     public String getItemName() {
-        return itemName;
+        return ItemName;
     }
 
     public void setItemName(String itemName) {
-        this.itemName = itemName;
+        ItemName = itemName;
     }
 
-    public String getItemDesc() {
-        return itemDesc;
+    public String getItemDescription() {
+        return ItemDescription;
     }
 
-    public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc;
+    public void setItemDescription(String itemDescription) {
+        ItemDescription = itemDescription;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getItemId() {
+        return ItemId;
+    }
+
+    public void setItemId(String itemId) {
+        ItemId = itemId;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
     }
 
     public double getItemRating() {
-        return itemRating;
+        return ItemRating;
     }
 
     public void setItemRating(double itemRating) {
-        this.itemRating = itemRating;
+        ItemRating = itemRating;
     }
 }

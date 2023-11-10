@@ -146,6 +146,7 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/manage_products"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
