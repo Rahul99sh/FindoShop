@@ -94,5 +94,7 @@
     <string name="search_here">Search here...</string>
     <string name="filter">filter</string>
     <string name="all_products">All Products</string>
+    <string name="_45_items_listed">45 Items Listed</string>
+    <string name="address_of_shop">Address of Shop</string>
 
 </resources>
