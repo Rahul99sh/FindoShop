@@ -13,24 +13,39 @@ import android.widget.Toast;
 import com.app.lets_go_splash.CreateAnim;
 import com.app.lets_go_splash.OnAnimationListener;
 import com.app.lets_go_splash.StarterAnimation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.pro.findoshop.MainActivity;
 import com.pro.findoshop.R;
 import java.util.ArrayList;
 
 public class FirstScreen extends AppCompatActivity {
     ImageView logo;
+    FirebaseUser mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
         logo = findViewById(R.id.logo);
-        new Handler().postDelayed(this::startAnim,2000);
-        new Handler().postDelayed(() -> {
-            Intent i = new Intent(FirstScreen.this, Onboarding.class);
-            startActivity(i);
-            overridePendingTransition(R.anim.no_animation, R.anim.fade_out);
-            finish();
-        }, 3400);
+
+        if(mUser != null) {
+            new Handler().postDelayed(this::startAnim, 2000);
+            new Handler().postDelayed(() -> {
+                Intent i = new Intent(FirstScreen.this, MainActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.no_animation, R.anim.fade_out);
+                finish();
+            }, 3400);
+        }else{
+            new Handler().postDelayed(this::startAnim, 2000);
+            new Handler().postDelayed(() -> {
+                Intent i = new Intent(FirstScreen.this, Onboarding.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.no_animation, R.anim.fade_out);
+                finish();
+            }, 3400);
+        }
 
 
     }
