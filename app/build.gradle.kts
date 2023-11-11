@@ -60,12 +60,12 @@ dependencies {
 
     //auto resizer
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation ("com.airbnb.android:lottie:6.0.0")
     implementation ("me.relex:circleindicator:2.1.6")
     implementation ("com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.github.smarteist:autoimageslider:1.3.9")
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 }

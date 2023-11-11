@@ -26,6 +26,7 @@ public class ManageProduct extends AppCompatActivity {
         storeViewModel.getLiveStoreItemsData().observe(this, items -> {
             adapter = new ItemAdapter(this,items);
             binding.itemRv.setAdapter(adapter);
+            binding.itemCount.setText(String.valueOf(items.size())+ " items Listed");
         });
 
     }

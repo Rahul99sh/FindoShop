@@ -1,6 +1,7 @@
 package com.pro.findoshop.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.pro.findoshop.R;
+import com.pro.findoshop.activities.EditProducts;
 import com.pro.findoshop.dataClasses.Items;
 
 import java.util.List;
@@ -37,6 +39,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.desc.setText(items.get(position).getItemDescription());
         holder.price.setText(String.valueOf(items.get(position).getPrice()));
         Glide.with(context).load(items.get(position).getItemUrl()).into(holder.image);
+        holder.itemView.setOnClickListener(v -> {
+            Intent i = new Intent(context, EditProducts.class);
+            i.putExtra("item", items.get(position));
+            context.startActivity(i);
+        });
     }
 
     @Override

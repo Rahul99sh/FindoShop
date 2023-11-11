@@ -1,16 +1,18 @@
 package com.pro.findoshop.dataClasses;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Items {
+public class Items implements Serializable {
 
     private String ItemUrl;
     private String ItemName, ItemDescription,price,ItemId,Category;
     private double ItemRating;
+    private int clicks,addedToCart;
 
     public Items(){}
 
-    public Items(String itemUrl, String itemName, String itemDescription, String price, String itemId, String category, double itemRating) {
+    public Items(String itemUrl, String itemName, String itemDescription, String price, String itemId, String category, double itemRating, int clicks, int addedToCart) {
         ItemUrl = itemUrl;
         ItemName = itemName;
         ItemDescription = itemDescription;
@@ -18,6 +20,24 @@ public class Items {
         ItemId = itemId;
         Category = category;
         ItemRating = itemRating;
+        this.clicks = clicks;
+        this.addedToCart = addedToCart;
+    }
+
+    public int getClicks() {
+        return clicks;
+    }
+
+    public void setClicks(int clicks) {
+        this.clicks = clicks;
+    }
+
+    public int getAddedToCart() {
+        return addedToCart;
+    }
+
+    public void setAddedToCart(int addedToCart) {
+        this.addedToCart = addedToCart;
     }
 
     public String getItemUrl() {

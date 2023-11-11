@@ -10,12 +10,10 @@
     android:layout_marginEnd="@dimen/_10sdp"
     >
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardUseCompatPadding="true"
-        app:strokeWidth="0.5dp"
-        app:strokeColor="#dbdce0"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="0dp">
@@ -30,7 +28,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.4"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
@@ -96,16 +94,17 @@
             <RelativeLayout
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.6"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <com.google.android.material.card.MaterialCardView
+                <androidx.cardview.widget.CardView
                     android:id="@+id/item_card"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_120sdp"
                     app:cardCornerRadius="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
                     app:cardBackgroundColor="#EBF3E8"
                     android:layout_alignParentTop="true"
                     app:cardElevation="0dp">
@@ -116,7 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         />
-                </com.google.android.material.card.MaterialCardView>
+                </androidx.cardview.widget.CardView>
 
 <!--                <com.google.android.material.card.MaterialCardView-->
 <!--                    android:layout_width="@dimen/_70sdp"-->
@@ -160,6 +159,6 @@
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

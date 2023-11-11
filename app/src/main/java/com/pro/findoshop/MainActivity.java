@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.pro.findoshop.activities.ManageProduct;
+import com.pro.findoshop.activities.StoreAnalytics;
 import com.pro.findoshop.adapters.SliderAdapter;
 import com.pro.findoshop.dataClasses.Items;
 import com.pro.findoshop.dataClasses.Store;
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.manageProducts.setOnClickListener(v -> {
             startActivity(new Intent(this, ManageProduct.class));
+        });
+        binding.analytics.setOnClickListener(v -> {
+            startActivity(new Intent(this, StoreAnalytics.class));
         });
     }
 
