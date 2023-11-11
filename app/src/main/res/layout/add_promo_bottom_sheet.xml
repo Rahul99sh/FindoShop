@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/durationDropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:inputType="none"
+        android:drawableEnd="@drawable/baseline_expand_circle_down_24"
+        />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="@dimen/_14sdp"
+        android:gravity="end"
+        android:layout_marginEnd="@dimen/_5sdp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/initButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Initiate Payment"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/white"
+        android:letterSpacing="0.04"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:background="@drawable/button_active"
+        android:layout_marginTop="@dimen/_16sdp"/>
+</LinearLayout>

@@ -96,5 +96,11 @@
     <string name="all_products">All Products</string>
     <string name="_45_items_listed">45 Items Listed</string>
     <string name="address_of_shop">Address of Shop</string>
+    <string name="name">Name</string>
+    <string name="selected_nproduct">Selected\nProduct</string>
+    <string name="top_nproduct">Top\nProduct</string>
+    <string name="clicks">Clicks</string>
+    <string name="comparision">Comparision</string>
+    <string name="image">Image</string>
 
 </resources>

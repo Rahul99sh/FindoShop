@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -17,15 +16,12 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.data.RadarData;
-import com.github.mikephil.charting.data.RadarDataSet;
-import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.pro.findoshop.R;
-import com.pro.findoshop.adapters.ItemAdapter;
+import com.pro.findoshop.bottomSheets.Comparison;
 import com.pro.findoshop.dataClasses.Items;
 import com.pro.findoshop.databinding.ActivityStoreAnalyticsBinding;
 import com.pro.findoshop.viewModels.StoreViewModel;
@@ -199,7 +195,8 @@ public class StoreAnalytics extends AppCompatActivity {
 
             // Select top 5 items
             Items topItem = categoryItems.get(0);
-            Toast.makeText(this, topItem.getItemName() + " -> " + selectedProduct.getItemName(), Toast.LENGTH_SHORT).show();
+            Comparison comparisonFragment = Comparison.newInstance(selectedProduct, topItem);
+            comparisonFragment.show(getSupportFragmentManager(), comparisonFragment.getTag());
         } else {
             Log.d("Comparison", "Please select both category and product for comparison");
         }

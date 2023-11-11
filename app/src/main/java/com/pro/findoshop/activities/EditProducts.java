@@ -30,7 +30,7 @@ public class EditProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_products);
-        item = (Items) getIntent().getSerializableExtra("item");
+        item = (Items) getIntent().getParcelableExtra("item");
         assert item != null;
         binding.price.setText(item.getPrice());
         binding.itemNameTxt.setText(item.getItemName());
