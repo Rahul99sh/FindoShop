@@ -48,8 +48,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //splash anim
-    implementation ("com.github.sam43:AnimateViewLibrary:1.0.1")
     //Circular Image View
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
@@ -69,4 +67,5 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("com.razorpay:checkout:1.6.33")
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
 }

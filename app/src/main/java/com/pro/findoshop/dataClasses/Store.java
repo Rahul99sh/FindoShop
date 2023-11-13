@@ -9,16 +9,20 @@ public class Store implements Parcelable {
     List<String> promoIds;
     private String StoreName;
     private Double StoreLat;
+    private Double rating;
+    private int visits;
     private Double StoreLong;
     private String StoreUrl;
     private String OwnerId,address,gstin,licenceNo;
     private String StoreId;
     public Store() {}
 
-    public Store(List<String> promoIds, String storeName, Double storeLat, Double storeLong, String storeUrl, String ownerId, String address, String gstin, String licenceNo, String storeId) {
+    public Store(List<String> promoIds, String storeName, Double storeLat, Double rating, int visits, Double storeLong, String storeUrl, String ownerId, String address, String gstin, String licenceNo, String storeId) {
         this.promoIds = promoIds;
         StoreName = storeName;
         StoreLat = storeLat;
+        this.rating = rating;
+        this.visits = visits;
         StoreLong = storeLong;
         StoreUrl = storeUrl;
         OwnerId = ownerId;
@@ -26,6 +30,22 @@ public class Store implements Parcelable {
         this.gstin = gstin;
         this.licenceNo = licenceNo;
         StoreId = storeId;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public int getVisits() {
+        return visits;
+    }
+
+    public void setVisits(int visits) {
+        this.visits = visits;
     }
 
     public List<String> getPromoIds() {
@@ -117,6 +137,12 @@ public class Store implements Parcelable {
             StoreLat = in.readDouble();
         }
         if (in.readByte() == 0) {
+            rating = null;
+        } else {
+            rating = in.readDouble();
+        }
+        visits = in.readInt();
+        if (in.readByte() == 0) {
             StoreLong = null;
         } else {
             StoreLong = in.readDouble();
@@ -156,6 +182,13 @@ public class Store implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeDouble(StoreLat);
         }
+        if (rating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(rating);
+        }
+        dest.writeInt(visits);
         if (StoreLong == null) {
             dest.writeByte((byte) 0);
         } else {

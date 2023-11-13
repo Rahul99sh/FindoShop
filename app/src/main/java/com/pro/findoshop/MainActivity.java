@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -16,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.appbar.AppBarLayout;
 import com.pro.findoshop.activities.ManageProduct;
 import com.pro.findoshop.activities.ManagePromotions;
+import com.pro.findoshop.activities.ShopRanking;
 import com.pro.findoshop.activities.StoreAnalytics;
 import com.pro.findoshop.adapters.SliderAdapter;
 import com.pro.findoshop.dataClasses.Items;
@@ -33,12 +35,12 @@ import me.relex.circleindicator.CircleIndicator3;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
-    Handler handler;
+    private ActivityMainBinding binding;
+    private Handler handler;
     private UserViewModel userViewModel;
     private StoreViewModel storeViewModel;
-    SliderAdapter sliderAdapter;
-    List<String> imageList;
+    private SliderAdapter sliderAdapter;
+    private List<String> imageList;
     public static String storeId;
     public static User user;
     public static Store store;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-
+        binding.shimmerDash.startShimmer();
         setupSlideBar();
         userViewModel.getLiveUserData().observe(this, user -> {
             this.user = user;
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 this.store = store;
                 binding.shopName.setText(store.getStoreName());
                 binding.address.setText(store.getAddress());
+                binding.shimmerDash.stopShimmer();
+                binding.shimmerDash.setVisibility(View.GONE);
+                binding.mainView.setVisibility(View.VISIBLE);
             });
             storeViewModel.getLiveStoreItemsData().observe(this, items -> {
                 this.items = items;
@@ -71,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.managePromotion.setOnClickListener(v -> {
             Intent i = new Intent(this, ManagePromotions.class);
+            i.putExtra("store", store);
+            startActivity(i);
+        });
+        binding.shopRank.setOnClickListener(v -> {
+            Intent i = new Intent(this, ShopRanking.class);
             i.putExtra("store", store);
             startActivity(i);
         });
