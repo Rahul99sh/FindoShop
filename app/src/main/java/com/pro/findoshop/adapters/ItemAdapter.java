@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.pro.findoshop.R;
 import com.pro.findoshop.activities.EditProducts;
 import com.pro.findoshop.dataClasses.Items;
+import com.pro.findoshop.dataClasses.Store;
 
 import java.util.List;
 
@@ -20,10 +21,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     Context context;
     List<Items> items;
+    Store store;
 
-    public ItemAdapter(Context context, List<Items> items) {
+    public ItemAdapter(Context context, List<Items> items, Store store) {
         this.context = context;
         this.items = items;
+        this.store = store;
     }
 
     @NonNull
@@ -42,6 +45,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         holder.itemView.setOnClickListener(v -> {
             Intent i = new Intent(context, EditProducts.class);
             i.putExtra("item", items.get(position));
+            i.putExtra("store", store);
             context.startActivity(i);
         });
     }

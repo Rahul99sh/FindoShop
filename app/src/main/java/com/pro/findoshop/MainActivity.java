@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.pro.findoshop.activities.ContactUs;
 import com.pro.findoshop.activities.ManageProduct;
 import com.pro.findoshop.activities.ManagePromotions;
 import com.pro.findoshop.activities.ShopRanking;
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.analytics.setOnClickListener(v -> {
             startActivity(new Intent(this, StoreAnalytics.class));
+        });
+        binding.contact.setOnClickListener(v -> {
+            startActivity(new Intent(this, ContactUs.class));
         });
         binding.managePromotion.setOnClickListener(v -> {
             Intent i = new Intent(this, ManagePromotions.class);

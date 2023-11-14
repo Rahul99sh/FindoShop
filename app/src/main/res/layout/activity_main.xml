@@ -330,6 +330,7 @@
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
                             <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/contact"
                                 android:layout_width="@dimen/_130sdp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
