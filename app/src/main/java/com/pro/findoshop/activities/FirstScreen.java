@@ -31,7 +31,7 @@ public class FirstScreen extends AppCompatActivity {
             startActivity(i);
             overridePendingTransition(R.anim.no_animation, R.anim.fade_out);
             finish();
-        }, 2500);
+        }, 3000);
 
     }
 
