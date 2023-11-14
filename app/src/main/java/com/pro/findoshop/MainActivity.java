@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -18,6 +19,8 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.pro.findoshop.activities.ContactUs;
 import com.pro.findoshop.activities.ManageProduct;
 import com.pro.findoshop.activities.ManagePromotions;
+import com.pro.findoshop.activities.Profile;
+import com.pro.findoshop.activities.RegisterShop;
 import com.pro.findoshop.activities.ShopRanking;
 import com.pro.findoshop.activities.StoreAnalytics;
 import com.pro.findoshop.adapters.SliderAdapter;
@@ -55,19 +58,50 @@ public class MainActivity extends AppCompatActivity {
         setupSlideBar();
         userViewModel.getLiveUserData().observe(this, user -> {
             this.user = user;
-            storeId = user.getStores().get(0);
-            storeViewModel = new ViewModelProvider(this).get(StoreViewModel.class);
-            storeViewModel.getLiveStoreData().observe(this, store -> {
-                this.store = store;
-                binding.shopName.setText(store.getStoreName());
-                binding.address.setText(store.getAddress());
+            if(user.getStores() != null && !user.getStores().isEmpty()) {
+                storeId = user.getStores().get(0);
+                storeViewModel = new ViewModelProvider(this).get(StoreViewModel.class);
+                storeViewModel.getLiveStoreData().observe(this, store -> {
+                    this.store = store;
+                    if(store.isVerified()) {
+                        binding.shopName.setText(store.getStoreName());
+                        binding.address.setText(store.getAddress());
+                        binding.shimmerDash.stopShimmer();
+                        binding.shimmerDash.setVisibility(View.GONE);
+                        binding.mainView.setVisibility(View.VISIBLE);
+                        binding.noShop.setVisibility(View.GONE);
+                        binding.pendingVeri.setVisibility(View.GONE);
+                    }else{
+                        binding.shimmerDash.stopShimmer();
+                        binding.shimmerDash.setVisibility(View.GONE);
+                        binding.mainView.setVisibility(View.GONE);
+                        binding.noShop.setVisibility(View.GONE);
+                        binding.pendingVeri.setVisibility(View.VISIBLE);
+                    }
+                });
+                storeViewModel.getLiveStoreItemsData().observe(this, items -> {
+                    this.items = items;
+                });
+            }else{
                 binding.shimmerDash.stopShimmer();
                 binding.shimmerDash.setVisibility(View.GONE);
-                binding.mainView.setVisibility(View.VISIBLE);
-            });
-            storeViewModel.getLiveStoreItemsData().observe(this, items -> {
-                this.items = items;
-            });
+                binding.mainView.setVisibility(View.GONE);
+                binding.noShop.setVisibility(View.VISIBLE);
+                binding.pendingVeri.setVisibility(View.GONE);
+            }
+        });
+        binding.myAccount.setOnClickListener(v -> {
+            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, Profile.class);
+            startActivity(i);
+        });
+        binding.account1.setOnClickListener(v -> {
+            Intent i = new Intent(this, Profile.class);
+            startActivity(i);
+        });
+        binding.account2.setOnClickListener(v -> {
+            Intent i = new Intent(this, Profile.class);
+            startActivity(i);
         });
         binding.manageProducts.setOnClickListener(v -> {
             startActivity(new Intent(this, ManageProduct.class));
@@ -87,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(this, ShopRanking.class);
             i.putExtra("store", store);
             startActivity(i);
+        });
+        binding.registerShop.setOnClickListener(v -> {
+            startActivity(new Intent(this, RegisterShop.class));
         });
 
     }

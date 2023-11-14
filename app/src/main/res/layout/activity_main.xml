@@ -16,10 +16,178 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
             <include layout="@layout/dash_shimmer" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noShop"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_weight="0.82"
+                    android:src="@drawable/findologo1" />
+
+                <ImageView
+                    android:id="@+id/account1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_weight="0.18"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_account"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:text="@string/no_shop_registered"
+                android:textColor="@color/lightGreen"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Please register your shop to explore\nall features"
+                android:gravity="center"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="@dimen/_230sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_50sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/noshop" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/registerShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_55sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/button_active"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:letterSpacing="0.04"
+                android:text="@string/register_shop"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pendingVeri"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_weight="0.82"
+                    android:src="@drawable/findologo1" />
+
+                <ImageView
+                    android:id="@+id/account2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_weight="0.18"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_account"
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:text="@string/verifying_your_shop"
+                android:textColor="@color/lightGreen"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/we_are_verifying_your_submitted_information_nplease_wait"
+                android:gravity="center"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieAnimationView1"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="@dimen/_230sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_50sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textView21"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/verify" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/mainView"
             android:layout_width="match_parent"
@@ -50,8 +218,8 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_130sdp"
-                        android:background="@drawable/nav_shape"
+                        android:layout_height="@dimen/_140sdp"
+                        android:background="@drawable/grad_nav"
                         >
 
                         <TextView
@@ -62,7 +230,7 @@
                             android:fontFamily="@font/poppins_bold"
                             android:letterSpacing="0.04"
                             android:text="Shop_Name"
-                            android:textColor="@color/text_primary"
+                            android:textColor="#FFFFF33B"
                             android:textSize="@dimen/_15sdp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +241,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_regular"
                             android:text="Address of Shop"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="#FFFED51B"
                             android:layout_marginStart="@dimen/_15sdp"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:textSize="@dimen/_10sdp"
@@ -88,7 +256,7 @@
                             android:scaleType="fitXY"
                             android:src="@drawable/ic_account"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                         <ImageView
                             android:id="@+id/plan_badge"
@@ -106,7 +274,7 @@
                             android:layout_marginEnd="@dimen/_15sdp"
                             android:fontFamily="@font/poppins_medium"
                             android:text="30 Days Left!!"
-                            android:textColor="@color/text_primary"
+                            android:textColor="#FFFED51B"
                             android:textSize="@dimen/_12sdp"
                             app:layout_constraintBottom_toBottomOf="@+id/plan_badge"
                             app:layout_constraintEnd_toEndOf="parent"

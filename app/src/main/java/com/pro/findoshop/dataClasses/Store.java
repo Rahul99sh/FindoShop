@@ -1,5 +1,6 @@
 package com.pro.findoshop.dataClasses;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -11,18 +12,20 @@ public class Store implements Parcelable {
     private Double StoreLat;
     private Double rating;
     private int visits;
+    private boolean verified;
     private Double StoreLong;
     private String StoreUrl;
     private String OwnerId,address,gstin,licenceNo;
     private String StoreId;
     public Store() {}
 
-    public Store(List<String> promoIds, String storeName, Double storeLat, Double rating, int visits, Double storeLong, String storeUrl, String ownerId, String address, String gstin, String licenceNo, String storeId) {
+    public Store(List<String> promoIds, String storeName, Double storeLat, Double rating, int visits, boolean verified, Double storeLong, String storeUrl, String ownerId, String address, String gstin, String licenceNo, String storeId) {
         this.promoIds = promoIds;
         StoreName = storeName;
         StoreLat = storeLat;
         this.rating = rating;
         this.visits = visits;
+        this.verified = verified;
         StoreLong = storeLong;
         StoreUrl = storeUrl;
         OwnerId = ownerId;
@@ -128,6 +131,14 @@ public class Store implements Parcelable {
         StoreId = storeId;
     }
 
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
     protected Store(Parcel in) {
         promoIds = in.createStringArrayList();
         StoreName = in.readString();
@@ -142,6 +153,9 @@ public class Store implements Parcelable {
             rating = in.readDouble();
         }
         visits = in.readInt();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            verified = in.readBoolean();
+        }
         if (in.readByte() == 0) {
             StoreLong = null;
         } else {
@@ -189,6 +203,9 @@ public class Store implements Parcelable {
             dest.writeDouble(rating);
         }
         dest.writeInt(visits);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            dest.writeBoolean(verified);
+        }
         if (StoreLong == null) {
             dest.writeByte((byte) 0);
         } else {

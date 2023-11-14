@@ -51,6 +51,7 @@ dependencies {
     //Circular Image View
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
+
     //google maps
 //    implementation ("com.google.maps.android:android-maps-utils:2.3.0")
     // dependency for loading image from url
@@ -61,11 +62,10 @@ dependencies {
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation ("com.airbnb.android:lottie:6.0.0")
     implementation ("me.relex:circleindicator:2.1.6")
-    implementation ("com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation ("com.razorpay:checkout:1.6.33")
+    implementation ("com.razorpay:checkout:1.6.36")
     implementation ("com.facebook.shimmer:shimmer:0.5.0")
 }

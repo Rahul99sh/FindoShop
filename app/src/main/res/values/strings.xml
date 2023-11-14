@@ -102,5 +102,24 @@
     <string name="clicks">Clicks</string>
     <string name="comparision">Comparision</string>
     <string name="image">Image</string>
+    <string name="register_shop">Register Shop</string>
+    <string name="no_shop_registered">No Shop Registered</string>
+    <string name="select_plan">Select Plan*</string>
+    <string name="add_shop_image">Add Shop Image</string>
+    <string name="enter_shop_details">Enter Shop Details</string>
+    <string name="licence_number">Licence Number*</string>
+    <string name="gst_number">GST Number*</string>
+    <string name="address">Address*</string>
+    <string name="select_location_on_map">Select Location on Map*</string>
+    <string name="verifying_your_shop">Verifying Your Shop</string>
+    <string name="we_are_verifying_your_submitted_information_nplease_wait">We are verifying your submitted Information\nPlease wait...</string>
+    <string name="rahul_sharma">Rahul Sharma</string>
+    <string name="xyz_gmail_com">xyz@gmail.com</string>
+    <string name="email">Email : </string>
+    <string name="findo_premium">Findo Premium</string>
+    <string name="_30_days_left">30 days Left</string>
+    <string name="store">Store</string>
+    <string name="logout">Logout</string>
+    <string name="contact_us">Contact Us</string>
 
 </resources>

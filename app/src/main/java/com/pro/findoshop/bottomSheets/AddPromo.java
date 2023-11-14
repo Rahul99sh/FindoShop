@@ -68,6 +68,7 @@ public class AddPromo extends BottomSheetDialogFragment {
     Checkout checkout;
     FirebaseAuth mAuth;
     int finalAmount;
+    int finalDuration;
     Store store;
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -135,7 +136,10 @@ public class AddPromo extends BottomSheetDialogFragment {
                 int duration = Integer.parseInt(selectedDuration.substring(0,2));
                 int price = -1;
                 for(PromoMeta promoMeta : promoMetaList){
-                    if(promoMeta.getDuration() == duration) price = promoMeta.getPrice();
+                    if(promoMeta.getDuration() == duration) {
+                        price = promoMeta.getPrice();
+                        finalDuration = promoMeta.getDuration();
+                    }
                 }
                 startPayment(price);
             } else if (selectedImageUri == null) {
@@ -149,7 +153,7 @@ public class AddPromo extends BottomSheetDialogFragment {
     }
 
 
-    // Fetch duration options from Firebase
+
     private void fetchDurationOptionsFromFirebase() {
         // Example: Assuming you have a 'durationOptions' collection in Firestore
         db.collection("PromotionMeta")
@@ -164,7 +168,6 @@ public class AddPromo extends BottomSheetDialogFragment {
                     }
                 });
     }
-
     private void pickImageFromGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setType("image/*");
@@ -210,7 +213,7 @@ public class AddPromo extends BottomSheetDialogFragment {
         Timestamp currentTimestamp = Timestamp.now();
         Date fDate = new Date();
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            fDate = Date.from(Instant.now().plus(30, ChronoUnit.DAYS));
+            fDate = Date.from(Instant.now().plus(finalDuration, ChronoUnit.DAYS));
         }
         String docId = documentReference.getId();
         Timestamp futureTimestamp = new Timestamp(fDate);
