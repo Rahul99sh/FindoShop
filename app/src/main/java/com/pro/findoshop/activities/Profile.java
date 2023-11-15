@@ -35,7 +35,7 @@ public class Profile extends AppCompatActivity {
 
         });
         binding.contactUs.setOnClickListener(v -> {
-
+            startActivity(new Intent(this, ContactUs.class));
         });
         binding.registerShop.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterShop.class));

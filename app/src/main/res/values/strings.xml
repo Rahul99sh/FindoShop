@@ -121,5 +121,6 @@
     <string name="store">Store</string>
     <string name="logout">Logout</string>
     <string name="contact_us">Contact Us</string>
+    <string name="loading">Loading</string>
 
 </resources>

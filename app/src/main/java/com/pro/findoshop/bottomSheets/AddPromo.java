@@ -55,14 +55,12 @@ public class AddPromo extends BottomSheetDialogFragment {
     private ImageView imageView;
     private AppCompatSpinner durationDropdown;
     private AppCompatButton initiatePaymentButton;
-
     private List<String> durationOptions;
     private ArrayAdapter<String> adapter;
     List<PromoMeta> promoMetaList;
     private FirebaseFirestore db;
-
     Uri selectedImageUri;
-
+    LoadingSheet loadingSheet;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     Checkout checkout;
@@ -91,6 +89,7 @@ public class AddPromo extends BottomSheetDialogFragment {
         if (getArguments() != null) {
             store = getArguments().getParcelable(ARG_STORE);
         }
+        loadingSheet = new LoadingSheet("Creating Promo...");
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         durationOptions = new ArrayList<>();
@@ -197,12 +196,12 @@ public class AddPromo extends BottomSheetDialogFragment {
         }
     }
     public void uploadImage(String s) {
+        loadingSheet.show(requireActivity().getSupportFragmentManager(), loadingSheet.getTag());
         StorageReference imageRef = storageReference.child(Objects.requireNonNull(selectedImageUri.getLastPathSegment()));
         imageRef.putFile(selectedImageUri)
                 .addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl().addOnSuccessListener(downloadUri -> {
                     String imageUrl = downloadUri.toString();
                     // Display the download URL in a Toast
-                    Toast.makeText(requireContext(), "Image uploaded!\n" + imageUrl, Toast.LENGTH_LONG).show();
                     writeTODb(s,imageUrl,finalAmount);
                 }));
     }
@@ -233,6 +232,7 @@ public class AddPromo extends BottomSheetDialogFragment {
                         db.collection("Store")
                                 .document(store.getStoreId())
                                 .update("promoIds", FieldValue.arrayUnion(docId));
+                        loadingSheet.dismiss();
                         dismiss();
                     } else {
                         Log.e("FirestoreExample", "Error adding document", task.getException());

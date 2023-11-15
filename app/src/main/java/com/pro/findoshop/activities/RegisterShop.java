@@ -33,6 +33,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pro.findoshop.R;
 import com.pro.findoshop.adapters.SliderAdapter;
+import com.pro.findoshop.bottomSheets.LoadingSheet;
 import com.pro.findoshop.dataClasses.Plan;
 import com.pro.findoshop.dataClasses.PromoMeta;
 import com.pro.findoshop.databinding.ActivityRegisterShopBinding;
@@ -68,12 +69,14 @@ public class RegisterShop extends AppCompatActivity implements PaymentResultList
     private StorageReference storageReference;
     Checkout checkout;
     Uri selectedImageUri;
+    LoadingSheet loadingSheet;
     private static final int PICK_IMAGE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_register_shop);
         db= FirebaseFirestore.getInstance();
+        loadingSheet = new LoadingSheet("Verifying ...");
         mAuth = FirebaseAuth.getInstance();
         setupSlideBar();
         storage = FirebaseStorage.getInstance();
@@ -161,6 +164,7 @@ public class RegisterShop extends AppCompatActivity implements PaymentResultList
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Store under Verification", Toast.LENGTH_SHORT).show();
+                        loadingSheet.dismiss();
                         db.collection("ShopOwners")
                                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                                 .update("stores", FieldValue.arrayUnion(docId));
@@ -212,6 +216,7 @@ public class RegisterShop extends AppCompatActivity implements PaymentResultList
     @Override
     public void onPaymentSuccess(String s) {
         try {
+            loadingSheet.show(getSupportFragmentManager(),loadingSheet.getTag());
             uploadImage(s);
         }catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
