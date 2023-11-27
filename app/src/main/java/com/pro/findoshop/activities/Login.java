@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.pro.findoshop.MainActivity;
 import com.pro.findoshop.R;
+import com.pro.findoshop.bottomSheets.LoadingSheet;
 import com.pro.findoshop.databinding.ActivityLoginBinding;
 
 import java.util.Objects;
@@ -27,10 +28,12 @@ public class Login extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     FirebaseAuth mAuth;
+    LoadingSheet loadingSheet;
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadingSheet = new LoadingSheet("Verifying Details...");
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
@@ -55,11 +58,13 @@ public class Login extends AppCompatActivity {
             binding.passwordBox.setError("Password cannot be empty");
             binding.password.requestFocus();
         }else{
+            loadingSheet.show(getSupportFragmentManager(), loadingSheet.getTag());
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener((OnCompleteListener<AuthResult>) task -> {
                 if (task.isSuccessful()) {
                     db.collection("ShopOwners").document(mAuth.getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            loadingSheet.dismiss();
                             if(documentSnapshot.exists()){
                                 Intent i = new Intent(Login.this, MainActivity.class);
                                 startActivity(i);
@@ -70,6 +75,7 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     }).addOnFailureListener(e -> {
+                        loadingSheet.dismiss();
                         Toast.makeText(Login.this, "This Account is not associated with Findo Shop", Toast.LENGTH_SHORT).show();
                         mAuth.signOut();
                     });

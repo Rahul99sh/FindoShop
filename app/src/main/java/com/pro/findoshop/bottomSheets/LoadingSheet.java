@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.pro.findoshop.R;
 
+import java.util.Objects;
+
 public class LoadingSheet extends BottomSheetDialogFragment {
     String text;
 
@@ -24,6 +26,13 @@ public class LoadingSheet extends BottomSheetDialogFragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Prevent dismissing the bottom sheet with swipe gestures
+        Objects.requireNonNull(getDialog()).setCanceledOnTouchOutside(false);
+        getDialog().setCancelable(false);
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

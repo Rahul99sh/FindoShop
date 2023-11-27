@@ -1,21 +1,18 @@
 package com.pro.findoshop.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.pro.findoshop.MainActivity;
 import com.pro.findoshop.R;
+import com.pro.findoshop.bottomSheets.LoadingSheet;
 import com.pro.findoshop.databinding.ActivityRegistrationBinding;
 
 import java.util.HashMap;
@@ -25,10 +22,12 @@ public class Registration extends AppCompatActivity {
 
     ActivityRegistrationBinding binding;
     FirebaseAuth mAuth;
+    LoadingSheet loadingSheet;
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadingSheet = new LoadingSheet("Creating Account...");
         binding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -58,22 +57,20 @@ public class Registration extends AppCompatActivity {
             binding.cPassword.requestFocus();
         }
         else{
-            //method to create new email and password for registering
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((OnCompleteListener<AuthResult>) task -> {
+            loadingSheet.show(getSupportFragmentManager(), loadingSheet.getTag());
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     HashMap<String,String> mp = new HashMap<>();
-                    mp.put("OwnerId", mAuth.getCurrentUser().getUid());
+                    mp.put("OwnerId", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                     mp.put("email", email);
-                    db.collection("ShopOwners").document(mAuth.getCurrentUser().getUid()).set(mp).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(Registration.this , "Registered successfully" , Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Registration.this, MainActivity.class)); // redirecting to login page
-                            finish();
-                        }
+                    db.collection("ShopOwners").document(mAuth.getCurrentUser().getUid()).set(mp).addOnCompleteListener(task1 -> {
+                        loadingSheet.dismiss();
+                        Toast.makeText(Registration.this , "Registered successfully" , Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Registration.this, MainActivity.class)); // redirecting to login page
+                        finish();
                     });
-
                 }else{
+                    loadingSheet.dismiss();
                     Toast.makeText(Registration.this , "Registration Error" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
