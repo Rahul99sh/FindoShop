@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.FindoShop"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/findo_logo" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/design_default_color_background" /> <!-- Firebase Cloud Messaging service -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="findoshop090" />
+        <service
+            android:name=".NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".activities.Profile"
             android:exported="false" />
@@ -25,6 +42,9 @@
             android:exported="false" />
         <activity
             android:name=".activities.ShopRanking"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Maintainance"
             android:exported="false" />
         <activity
             android:name=".activities.ManagePromotions"

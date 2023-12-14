@@ -3,6 +3,7 @@ package com.pro.findoshop.activities;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -84,7 +85,7 @@ public class ShopRanking extends AppCompatActivity {
     }
 
     private void generateRanks() {
-        Collections.sort(allStores, new Comparator<Store>() {
+        allStores.sort(new Comparator<Store>() {
             @Override
             public int compare(Store store1, Store store2) {
                 // Compare by rating first
@@ -115,7 +116,13 @@ public class ShopRanking extends AppCompatActivity {
         binding.myRating.setText(String.valueOf(store.getRating()));
         binding.myVisits.setText(String.valueOf(store.getVisits()));
         binding.myName.setText(String.valueOf(store.getStoreName()));
-        Glide.with(this).load(store.getStoreUrl()).into(binding.myImg);
+        try {
+            Glide.with(ShopRanking.this).load(store.getStoreUrl()).into(binding.myImg);
+        }catch (Exception ignored){
+
+        }
+        binding.mainView.setVisibility(View.VISIBLE);
+        binding.loading.setVisibility(View.GONE);
         adapter = new RankingAdapter(allStores,this,store.getStoreId());
         binding.rankRv.setAdapter(adapter);
     }

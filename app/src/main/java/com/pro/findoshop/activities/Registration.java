@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.pro.findoshop.MainActivity;
 import com.pro.findoshop.R;
 import com.pro.findoshop.bottomSheets.LoadingSheet;
@@ -60,15 +61,26 @@ public class Registration extends AppCompatActivity {
             loadingSheet.show(getSupportFragmentManager(), loadingSheet.getTag());
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
-                    HashMap<String,String> mp = new HashMap<>();
-                    mp.put("OwnerId", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
-                    mp.put("email", email);
-                    db.collection("ShopOwners").document(mAuth.getCurrentUser().getUid()).set(mp).addOnCompleteListener(task1 -> {
-                        loadingSheet.dismiss();
-                        Toast.makeText(Registration.this , "Registered successfully" , Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Registration.this, MainActivity.class)); // redirecting to login page
-                        finish();
-                    });
+                    FirebaseMessaging.getInstance().getToken()
+                            .addOnCompleteListener(task1 -> {
+                                if (!task1.isSuccessful()) {
+                                    return;
+                                }
+                                // Get new FCM registration token
+                                String registrationToken = task1.getResult();
+                                HashMap<String,String> mp = new HashMap<>();
+                                mp.put("OwnerId", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+                                mp.put("email", email);
+                                mp.put("deviceToken", registrationToken);
+
+                                db.collection("ShopOwners").document(mAuth.getCurrentUser().getUid()).set(mp).addOnCompleteListener(task2 -> {
+                                    loadingSheet.dismiss();
+                                    Toast.makeText(Registration.this , "Registered successfully" , Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(Registration.this, MainActivity.class)); // redirecting to login page
+                                    finish();
+                                });
+
+                            });
                 }else{
                     loadingSheet.dismiss();
                     Toast.makeText(Registration.this , "Registration Error" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();

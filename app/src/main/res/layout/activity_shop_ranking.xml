@@ -36,106 +36,142 @@
 
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:id="@+id/mainView"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_15sdp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Shop Rankings"
-            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardView"
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Shop Rankings"
+                    android:textSize="@dimen/_15sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:strokeColor="@color/blue_inactive"
+                    app:strokeWidth="2dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/myRank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="1."
+                            android:textSize="@dimen/_12sdp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/myImg"
+                            android:layout_width="@dimen/_65sdp"
+                            android:layout_height="@dimen/_65sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:src="@drawable/findoshop_logo" />
+
+                        <TextView
+                            android:id="@+id/myName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:maxWidth="@dimen/_80sdp"
+                            android:maxLines="3"
+                            android:text="Store Name"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:gravity="end|center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/myRating"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:fontFamily="@font/poppins_bold"
+                                android:gravity="center"
+                                android:text="4.8"
+                                android:textSize="@dimen/_12sdp"
+                                app:drawableEndCompat="@drawable/baseline_star_24" />
+
+                            <TextView
+                                android:id="@+id/myVisits"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="center"
+                                android:text="4500 Visits"
+                                android:textSize="@dimen/_12sdp" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rank_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/_150sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    tools:itemCount="3"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    tools:listitem="@layout/ranking_item" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/blue_inactive"
-            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/_5sdp">
-
-                <TextView
-                    android:id="@+id/myRank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="1."
-                    android:textSize="@dimen/_12sdp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/myImg"
-                    android:layout_width="@dimen/_65sdp"
-                    android:layout_height="@dimen/_65sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:src="@drawable/findoshop_logo" />
-
-                <TextView
-                    android:id="@+id/myName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxWidth="@dimen/_80sdp"
-                    android:maxLines="3"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Store Name"
-                    android:textSize="@dimen/_12sdp" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:gravity="end|center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/myRating"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:fontFamily="@font/poppins_bold"
-                        android:gravity="center"
-                        android:text="4.8"
-                        android:textSize="@dimen/_12sdp"
-                        app:drawableEndCompat="@drawable/baseline_star_24" />
-
-                    <TextView
-                        android:id="@+id/myVisits"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:gravity="center"
-                        android:text="4500 Visits"
-                        android:textSize="@dimen/_12sdp" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rank_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingBottom="@dimen/_100sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            tools:listitem="@layout/ranking_item" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/rank" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

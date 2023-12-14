@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.pro.findoshop.activities.ContactUs;
+import com.pro.findoshop.activities.Maintainance;
 import com.pro.findoshop.activities.ManageProduct;
 import com.pro.findoshop.activities.ManagePromotions;
 import com.pro.findoshop.activities.Profile;
@@ -28,6 +29,7 @@ import com.pro.findoshop.dataClasses.Items;
 import com.pro.findoshop.dataClasses.Store;
 import com.pro.findoshop.dataClasses.User;
 import com.pro.findoshop.databinding.ActivityMainBinding;
+import com.pro.findoshop.viewModels.MaintainanceViewModel;
 import com.pro.findoshop.viewModels.StoreViewModel;
 import com.pro.findoshop.viewModels.UserViewModel;
 
@@ -49,12 +51,22 @@ public class MainActivity extends AppCompatActivity {
     public static User user;
     public static Store store;
     public static List<Items> items;
+    MaintainanceViewModel viewModel1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         binding.shimmerDash.startShimmer();
+        viewModel1 = new ViewModelProvider(this).get(MaintainanceViewModel.class);
+        viewModel1.loadData();
+        viewModel1.getData().observe(this, data -> {
+            if(data.isMaintainance_shop()){
+                Intent i =  new Intent(this, Maintainance.class);
+                startActivity(i);
+                finish();
+            }
+        });
         setupSlideBar();
         userViewModel.getLiveUserData().observe(this, user -> {
             this.user = user;
